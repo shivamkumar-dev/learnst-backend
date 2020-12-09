@@ -9,7 +9,9 @@ const auth = require('./routes/auth');
 const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
 const mongoose = require('mongoose');
+const compression = require('compression');
 const express = require('express');
+const helmet = require('helmet');
 const app = express();
 require('dotenv').config();
 
@@ -35,11 +37,8 @@ app.use('/api/quizzes', quizzes);
 app.use('/api/users', users);
 app.use('/api/auth', auth);
 app.use(error);
-
-// Home
-app.get('/', (req, res) => {
-  res.send('Hello!');
-});
+app.use(helmet());
+app.use(compression());
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
