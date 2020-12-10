@@ -28,11 +28,11 @@ router.post('/', [auth, admin], async (req, res) => {
     coverUrl: req.body.coverUrl,
     category: {
       _id: category._id,
-      category: category.category,
+      name: category.name,
     },
     level: {
       _id: level._id,
-      level: level.level,
+      name: level.name,
     },
   });
   await resource.save();
@@ -59,11 +59,11 @@ router.put('/:id', [auth, admin], async (req, res) => {
       coverUrl: req.body.coverUrl,
       category: {
         _id: category._id,
-        category: category.category,
+        name: category.name,
       },
       level: {
         _id: level._id,
-        level: level.level,
+        name: level.name,
       },
     },
     { new: true }

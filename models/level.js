@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 // Level Schema
 const levelSchema = new mongoose.Schema({
-  level: {
+  name: {
     type: String,
     enum: ['Beginner', 'Intermediate', 'Advanced'],
     required: true,
@@ -16,7 +16,7 @@ const Level = mongoose.model('Level', levelSchema);
 // Level Validator
 const validateLevel = (level) => {
   const schema = Joi.object({
-    level: Joi.string().min(6).max(15).required(),
+    name: Joi.string().min(6).max(15).required(),
   });
 
   return schema.validate(level);

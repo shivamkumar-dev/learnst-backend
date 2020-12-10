@@ -4,7 +4,7 @@ const { Level, validate } = require('../models/level');
 const router = require('express').Router();
 
 router.get('/', async (req, res) => {
-  const levels = await Level.find().sort('level');
+  const levels = await Level.find().sort('name');
   res.send(levels);
 });
 
@@ -12,7 +12,7 @@ router.post('/', [auth, admin], async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
-  const level = new Level({ level: req.body.level });
+  const level = new Level({ name: req.body.name });
   await level.save();
 
   res.send(level);
@@ -25,7 +25,7 @@ router.put('/:id', [auth, admin], async (req, res) => {
   const level = await Level.findByIdAndUpdate(
     req.params.id,
     {
-      level: req.body.level,
+      name: req.body.name,
     },
     { new: true }
   );

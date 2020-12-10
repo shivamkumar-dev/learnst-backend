@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 // Category Schema
 const categorySchema = new mongoose.Schema({
-  category: {
+  name: {
     type: String,
     required: true,
     minlength: 3,
@@ -17,7 +17,7 @@ const Category = mongoose.model('Category', categorySchema);
 // Category Validator
 const validateCategory = (category) => {
   const schema = Joi.object({
-    category: Joi.string().min(3).max(50).required(),
+    name: Joi.string().min(3).max(50).required(),
   });
 
   return schema.validate(category);

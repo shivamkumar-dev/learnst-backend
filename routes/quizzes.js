@@ -27,11 +27,11 @@ router.post('/', auth, async (req, res) => {
     quiz: req.body.quiz,
     category: {
       _id: category._id,
-      category: category.category,
+      name: category.name,
     },
     level: {
       _id: level._id,
-      level: level.level,
+      name: level.name,
     },
   });
   await quiz.save();
@@ -57,11 +57,11 @@ router.put('/:id', auth, async (req, res) => {
       quiz: req.body.quiz,
       category: {
         _id: category._id,
-        category: category.category,
+        name: category.name,
       },
       level: {
         _id: level._id,
-        level: level.level,
+        name: level.name,
       },
     },
     { new: true }
