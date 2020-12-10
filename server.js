@@ -11,7 +11,6 @@ Joi.objectId = require('joi-objectid')(Joi);
 const mongoose = require('mongoose');
 const compression = require('compression');
 const express = require('express');
-const cors = require('cors');
 const helmet = require('helmet');
 const app = express();
 require('dotenv').config();
@@ -30,6 +29,13 @@ mongoose
   );
 
 // Middlewares
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    next();
+});
 app.use(express.json());
 app.use('/api/levels', levels);
 app.use('/api/categories', categories);
@@ -38,7 +44,6 @@ app.use('/api/quizzes', quizzes);
 app.use('/api/users', users);
 app.use('/api/auth', auth);
 app.use(error);
-app.use(cors());
 app.use(helmet());
 app.use(compression());
 
