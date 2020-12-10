@@ -39,7 +39,7 @@ app.use('/api/users', users);
 app.use('/api/auth', auth);
 app.use(error);
 app.use(helmet());
-app.use(cors({ origin: '*' }));
+app.use(cors());
 app.use(compression());
 
 const port = process.env.PORT || 3000;
