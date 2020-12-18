@@ -1,4 +1,5 @@
 require('express-async-errors');
+const cors = require('./middleware/cors');
 const error = require('./middleware/error');
 const quizzes = require('./routes/quizzes');
 const resources = require('./routes/resources');
@@ -29,19 +30,6 @@ mongoose
   );
 
 // Middlewares
-app.use(function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader(
-    'Access-Control-Allow-Methods',
-    'GET, POST, OPTIONS, PUT, PATCH, DELETE'
-  );
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'X-Requested-With,content-type'
-  );
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  next();
-});
 app.use(express.json());
 app.use('/api/levels', levels);
 app.use('/api/categories', categories);
@@ -49,6 +37,7 @@ app.use('/api/resources', resources);
 app.use('/api/quizzes', quizzes);
 app.use('/api/users', users);
 app.use('/api/auth', auth);
+app.use(cors);
 app.use(error);
 app.use(helmet());
 app.use(compression());
