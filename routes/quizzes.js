@@ -12,7 +12,8 @@ router.get('/', async (req, res) => {
 });
 
 // Post a New Quiz
-router.post('/', auth, async (req, res) => {
+// auth,
+router.post('/', async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -40,7 +41,8 @@ router.post('/', auth, async (req, res) => {
 });
 
 // Update an existing Quiz
-router.put('/:id', auth, async (req, res) => {
+// auth,
+router.put('/:id', async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -74,7 +76,8 @@ router.put('/:id', auth, async (req, res) => {
 });
 
 // Delete an existing Quiz
-router.delete('/:id', [auth, admin], async (req, res) => {
+// [auth, admin],
+router.delete('/:id', async (req, res) => {
   const quiz = await Quiz.findByIdAndRemove(req.params.id);
 
   if (!quiz)

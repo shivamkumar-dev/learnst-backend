@@ -12,7 +12,8 @@ router.get('/', async (req, res) => {
 });
 
 // Post a New Resource
-router.post('/', [auth, admin], async (req, res) => {
+//[auth, admin],
+router.post('/', async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -41,7 +42,8 @@ router.post('/', [auth, admin], async (req, res) => {
 });
 
 // Update an existing Resource
-router.put('/:id', [auth, admin], async (req, res) => {
+//[auth, admin],
+router.put('/:id', async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -76,7 +78,8 @@ router.put('/:id', [auth, admin], async (req, res) => {
 });
 
 // Delete an existing Resource
-router.delete('/:id', [auth, admin], async (req, res) => {
+// [auth, admin],
+router.delete('/:id', async (req, res) => {
   const resource = await Resource.findByIdAndRemove(req.params.id);
 
   if (!resource)
