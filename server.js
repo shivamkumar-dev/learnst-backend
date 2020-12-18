@@ -30,6 +30,7 @@ mongoose
   );
 
 // Middlewares
+app.use(cors);
 app.use(express.json());
 app.use('/api/levels', levels);
 app.use('/api/categories', categories);
@@ -37,7 +38,6 @@ app.use('/api/resources', resources);
 app.use('/api/quizzes', quizzes);
 app.use('/api/users', users);
 app.use('/api/auth', auth);
-app.use(cors);
 app.use(error);
 app.use(helmet());
 app.use(compression());
